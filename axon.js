@@ -4,6 +4,7 @@
 	App.load('home');
 
 	var mymap = L.map('mapid');
+	var marker;
 
 	//which tiles we're using
 	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -19,8 +20,11 @@
 				mymap.setView([data.lat, data.long], 19);
 
 				//draw marker
-				var marker = L.marker([data.lat, data.long]).addTo(mymap);
-
+				if (!marker) {
+					marker = L.marker([data.lat, data.long]).addTo(mymap);
+				}else{
+					marker.setLatLng([data.lat, data.long]).update();
+				}
 		});
 
 
