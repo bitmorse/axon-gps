@@ -11,15 +11,12 @@
 	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 	}).addTo(mymap);
 
-	//draw marker
-	var marker = L.marker([51.5, -0.09]).addTo(mymap);
-
-
 	setInterval(function(){
 
 		$.getJSON( "http://localhost:8080/nervousnet-api/raw-sensor-data/GPS", function( data ) {
-
-			$("#sensordata").html(JSON.stringify(data));
+			
+				//draw marker
+				var marker = L.marker([data.lat, data.long]).addTo(mymap);
 
 		});
 
